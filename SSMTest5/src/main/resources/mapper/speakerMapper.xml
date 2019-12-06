@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.mapper.SpeakerMapper">
+	<resultMap type="speaker" id="speakerMap">
+		<id column="id" property="id"/>
+		<result column="speaker_name" property="speaker_name"/>
+		<result column="speaker_desc" property="speaker_desc"/>
+		<result column="speaker_job" property="speaker_job"/>
+		<result column="pic_url" property="pic_url"/>
+	</resultMap>
+	<!-- 讲师查询所有 -->
+	<select id="selectAllSpea" resultMap="speakerMap">
+		select * from speaker limit ${a1},${a2}
+	</select>
+	<!-- 查询讲师的  id，name -->
+	<select id="selectName" resultMap="speakerMap">
+		select id,speaker_name from speaker 
+	</select>
+	<!-- 统计 -->
+	<select id="countSpea" resultType="int">
+		select count(*) from speaker
+	</select>
+	<!-- 添加 -->
+	<insert id="addSpea" parameterType="speaker">
+		insert into speaker values(null,#{speaker_name},#{speaker_desc},#{speaker_job},#{pic_url});
+	</insert>
+	<!-- 删除 -->
+	<delete id="deleteSpea" parameterType="int">
+		delete from speaker where id =#{id}
+	</delete>
+	<!-- 查询单挑数据 -->
+	<select id="selectById" resultType="speaker">
+		select * from speaker where id=#{id}
+	</select>
+	<!-- 修改 -->
+	<update id="updateSpea" parameterType="speaker">
+		 update speaker
+			 <set>
+			<if test="speaker_name!=null">
+				speaker_name=#{speaker_name},
+			</if>
+			<if test="speaker_desc!=null">
+				speaker_desc=#{speaker_desc},
+			</if>
+			<if test="speaker_job!=null">
+				speaker_job=#{speaker_job},
+			</if>
+			<if test="pic_url!=null">
+				pic_url=#{pic_url},
+			</if>
+			</set>
+		 where id=#{id}
+	</update>
+	
+	<!-- 批删 -->
+	<delete id="dAll" parameterType="list">
+		DELETE FROM  speaker  WHERE id IN
+    <foreach collection="userIdList" item="id" open="(" separator="," close=")">
+        #{id}
+    </foreach>
+    </delete>
+</mapper>

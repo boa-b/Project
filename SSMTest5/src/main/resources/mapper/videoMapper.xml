@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.zhiyou.mapper.VideoMapper">
+	<resultMap type="video" id="videoMap">
+		<id column="video_id" property="video_id" />
+		<result column="title" property="title" />
+		<result column="detail" property="detail" />
+		<result column="time" property="time" />
+		<result column="speaker_id" property="speaker_id" />
+		<result column="course_id" property="course_id" />
+		<result column="video_url" property="video_url" />
+		<result column="image_url" property="image_url" />
+		<result column="play_num" property="play_num" />
+		<!-- 子表 -->
+		<association property="course" javaType="course">
+			<id column="id" property="id" />
+			<result column="course_title" property="course_title" />
+			<result column="course_desc" property="course_desc" />
+			<result column="subject_id" property="subject_id" />
+			<association property="subject" javaType="subject">
+				<id column="subject_id" property="subject_id" />
+				<result column="subject_name" property="subject_name" />
+			</association> 
+		</association>
+		<!-- 父表 -->
+		<association property="speaker" javaType="speaker">
+			<id column="id" property="id" />
+			<result column="speaker_name" property="speaker_name" />
+			<result column="speaker_desc" property="speaker_desc" />
+			<result column="speaker_job" property="speaker_job" />
+			<result column="pic_url" property="pic_url" />
+		</association>
+	</resultMap>
+	<!-- 视频查询所有 -->
+	<select id="selectAllVid" resultMap="videoMap">
+		select * from video v,speaker s where v.speaker_id = s.id limit ${a1},${a2}
+	</select>
+	<!-- 统计 -->
+	<select id="countVid" resultType="int">
+		select count(*) from video
+	</select>
+
+	<!-- 添加 -->
+	<insert id="addVid" parameterType="video">
+		insert into video (title,detail,time,speaker_id,course_id,video_url,image_url) 
+		values(#{title},#{detail},#{speaker_id},#{course_id},#{time},#{video_url},#{image_url});
+	</insert>
+	<!-- 删除 -->
+	<delete id="deleteVid" parameterType="int">
+		delete from video where video_id =#{video_id}
+	</delete>
+	<!-- 修改 -->
+	<update id="updateVid" parameterType="video">
+		 update video
+			 <set>
+			<if test="title!=null">
+				title=#{title},
+			</if>
+			<if test="detail!=null">
+				detail=#{detail},
+			</if>
+			<if test="time!=null">
+				time=#{time},
+			</if>
+			<if test="speaker_id!=speaker_id">
+				speaker_id=#{speaker_id},
+			</if>
+			<if test="course_id!=null">
+				course_id=#{course_id},
+			</if>
+			<if test="video_url!=null">
+				video_url=#{video_url},
+			</if>
+			<if test="image_url!=null">
+				image_url=#{image_url},
+			</if>
+			</set>
+		 where video_id=#{video_id}
+	</update>
+	<!-- 根据ID查询出一条视频 -->
+	<select id="selectById" resultType="video">
+		select * from video where video_id=#{video_id}
+	</select>
+	<!-- 模糊查询 -->
+	<select id="selectLike"  resultMap="videoMap" >
+		select * from video v,subject s,speaker p
+			<trim prefix="where" prefixOverrides="and">
+				<if test="title!=null">
+					title like concat('%',#{title},'%')
+				</if>
+				<if test="speaker_id!=null">
+					and speaker_id like concat('%',#{speaker_id},'%')
+				</if>
+				<if test="subject_id!=null">
+					and s.subject_id like concat('%',#{subject_id},'%')
+				</if>
+				and v.speaker_id=p.id
+			</trim>	
+				limit 0,20
+	</select>
+	
+	
+	
+	<!-- 批删 -->
+	<delete id="dAll" parameterType="list">
+		DELETE FROM  video  WHERE video_id IN
+    <foreach collection="userIdList" item="id" open="(" separator="," close=")">
+        #{id}
+    </foreach>
+		
+	</delete>
+</mapper>
