@@ -31,4 +31,8 @@ public interface VideoService {
 
 	// 批量删除
 	public int dAll(List<Integer> userIdList, HttpServletResponse response);
+
+	List<Video> selectByCourseid(int id);
+
+	Video selectById2(int id);
 }

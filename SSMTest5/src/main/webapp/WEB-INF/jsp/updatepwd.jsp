@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script  src="jquery/jquery.js"></script>
+<script  src="jquery/jquery.validate.min.js"></script>
+<script  src="jquery/messages_zh.js"></script>
 <meta charset="UTF-8">
 
     <!-- base href="http://localhost:8080/video/" -->
@@ -19,76 +23,19 @@
     <title>在线公开课-智游教育|java|大数据|HTML5|python|UI|PHP视频教程</title>
 </head>
 <body class="w100">
-   
-
-
-
-<header>
-	<div class="container top_bar clearfix">
-		<img src="z/logo.png" alt="智游">
-		<div id="tele">
-			<span>4006-371-555</span>
-			<span>0371-88888598</span>
-		</div>
-	</div>
-	<menu>
-		<div class="container clearfix">
-			<ul class="clearfix f_left">
-				<li><a>首页</a></li>
-				
-				<li class="menu_active"><a ">个人中心</a></li>
-			</ul>
-			
-			<div id="user_bar">
-				<a>
-						
-						<img id="avatar" src="z/avatar_lg.png" alt="" "="">
-						
-						
-					
-
-				</a>
-				<a >退出</a>
-			</div>
-		</div>
-	</menu>
-</header>
-
-   <main>
-        <div class="container">
-            <h2>我的资料</h2>
-            <div id="profile_tab">
-                <ul class="profile_tab_header f_left clearfix">
-                    <li><a >更改资料</a></li>
-                    <li class="profile_tab_line">|</li>
-                    <li><a>更改头像</a></li>
-                    <li class="profile_tab_line">|</li>
-                    <li><a >密码安全</a></li>
-                </ul>
-                <div class="proflle_tab_body">
-                    <div class="proflle_tab_workplace clearfix">
-                        <div class="profile_avatar_area">
-                        
-                           
-		                         <img id="avatar" width="200px;" src="http://localhost:8080/Voids/" alt="">
-		                      
-		                      
-		                      
-                           
-                        </div>
                         <div class="profile_ifo_area">
-                            <form action="" method="post">
+                            <form action="updatepwd2" method="post">
                                 <div class="form_group">
                                     <span class="dd">旧　密　码：</span>
-                                    <input  type="password"><span id="oldMsg"></span>
+                                    <input id="oldpassword" name="oldpassword"  type="password" onblur="onn()">${msg} <i id="i1"></i><span id="oldMsg"></span>
                                 </div>
                                 <div class="form_group">
                                     <span class="dd">新　密　码：</span>
-                                    <input i type="password">
+                                    <input  type="password" id="newpwd1" name="password">
                                 </div>
                                 <div class="form_group">
                                     <span class="dd">确认新密码：</span>
-                                    <input  type="password"><span id="passMsg"></span>
+                                    <input  type="password" id="newpwd2" name="password2" onblur="onn1()">${msg1}<span id="passMsg"><i id="i2"></i></span>
                                 </div>
                                 <div class="form_submit dd">
                                     <input value="保　存" type="submit">
@@ -96,26 +43,35 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    
-
-
-<footer>
-	<div class="container">
-		<ul>
-			<li><img src="z/footer_logo.png" alt="" id="foot_logo"></li>
-			<li>版权所有：智游3G教育　　　©&nbsp;www.zhiyou100.com</li>
-			<li><img src="z/a.png" alt="" id="wxgzh"></li>
-		</ul>
-	</div>
-</footer>
-
-    
-
- 
+                        
+                        <script type="text/javascript">
+		function onn() {
+			
+			$.ajax({
+				url:"oldpassword",	// 指定请求URL
+				type:"get",		// 指定请求方式	
+				data:{			// 请求附带的参数
+					oldpassword:$("#oldpassword").val()
+				},
+				success:function(data){	// 成功后的回调函数      data代表服务器响应的数据
+					if (data=="false") {
+						alert("密码为空或者错误")
+											
+					}
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown){	// 失败回调的函数
+					alert("textStatus");	
+				}
+			})
+		}
+		function onn1(){
+			if($("#newpwd1").val()!=$("#newpwd2").val()){
+				alert("两次密码不一致")
+				
+			}
+			
+			
+		}
+	</script>
 </body>
 </html>

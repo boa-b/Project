@@ -31,4 +31,8 @@ public interface CourseService {
 
 	// 批量删除
 	public int dAll(List<Integer> userIdList, HttpServletResponse response);
+
+	List<Course> selectById2(int id);
+
+	Course selectByCourseid(int id);
 }

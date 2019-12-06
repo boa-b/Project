@@ -56,4 +56,11 @@ public class VideoServiceImpl implements VideoService {
 		return list;
 	}
 
+	public List<Video> selectByCourseid(int id) {
+		return mapper.selectByCourseid(id);
+	}
+
+	public Video selectById2(int id) {
+		return mapper.selectById2(id);
+	}
 }

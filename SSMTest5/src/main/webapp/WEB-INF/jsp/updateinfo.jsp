@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+           <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,84 +19,31 @@
     <title>在线公开课-智游教育|java|大数据|HTML5|python|UI|PHP视频教程</title>
 </head>
 <body class="w100">
-    
-
-
-
-<header>
-	<div class="container top_bar clearfix">
-		<img src="z/logo.png" alt="智游">
-		<div id="tele">
-			<span>4006-371-555</span>
-			<span>0371-88888598</span>
-		</div>
-	</div>
-	<menu>
-		<div class="container clearfix">
-			<ul class="clearfix f_left">
-				<li><a>首页</a></li>
-				
-				<li class="menu_active"><a>个人中心</a></li>
-			</ul>
-			
-			<div id="user_bar">
-				<a>
-						
-						<img id="avatar" src="z/avatar_lg.png" alt="" "="">
-						
-						
-					
-
-				</a>
-				<a>退出</a>
-			</div>
-		</div>
-	</menu>
-</header>
-
-     <main>
-        <div class="container">
-            <h2>我的资料</h2>
-            <div id="profile_tab">
-                <ul class="profile_tab_header f_left clearfix">
-                    <li><a>更改资料</a></li>
-                    <li class="profile_tab_line">|</li>
-                    <li><a>更改头像</a></li>
-                    <li class="profile_tab_line">|</li>
-                    <li><a>密码安全</a></li>
-                </ul>
-                <div class="proflle_tab_body">
-                    <div class="proflle_tab_workplace clearfix">
-                        <div class="profile_avatar_area">
-                            
-                                <img src="http://localhost:8080/Voids/" width="200px;">
-                            
-
-                            
-                        </div>
-                        <div class="profile_ifo_area">
-                            <form>
-                                <input name="id" value="21" type="hidden">
+      <div class="profile_ifo_area">
+                            <form action="updateinfo2">
+                                <input name="id" value=${user.id} type="hidden">
                                 <div class="form_group">
-                                    <span class="dd">昵　称：</span><input name="name" type="text" value="">
+                                    <span class="dd">昵　称：</span><input name="nickname" type="text" value="${user.nickname} ">
                                 
                                 </div>
                                 <div class="form_group">
                                     <span class="dd">性　别：</span>
                                    
-                                    <input id="man"  type="radio"><label for="man">男</label>
-                                    <input id="woman" type="radio"><label for="woman">女</label>
+                                    <input id="man"  type="radio" name="sex" value="man"><label for="man">男</label>
+                                    <input id="woman" type="radio" name="sex" value="woman"><label for="woman">女</label>
        
                                      
                                       
                                 </div>
                                 <div class="form_group">
                                     <span class="dd">生　日：</span>  <!-- 1990-10-04 -->
-                                    <input name="birthday" type="text" value="">
+                                    <input name="birthday" type="text" value="${user.birthday} ">
                                 </div>
                                 <div class="form_group">
                                     <span class="dd">邮　箱：</span>
-                                    <span>1@qq.com</span>
+                                    <span>${user.accounts}</span>
+                                    
+                                    
                                 </div>
                                 <div class="form_group">
                                     <span class="dd">所在地：</span>
@@ -111,23 +60,6 @@
                                 
                             </form>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    
-
-
-<footer>
-	<div class="container">
-		<ul>
-			<li><img src="z/footer_logo.png" alt="" id="foot_logo"></li>
-			<li>版权所有：智游3G教育　　　©&nbsp;www.zhiyou100.com</li>
-			<li><img src="z/a.png" alt="" id="wxgzh"></li>
-		</ul>
-	</div>
-</footer>
 
     
 <script src="js/jquery-1.js"></script>

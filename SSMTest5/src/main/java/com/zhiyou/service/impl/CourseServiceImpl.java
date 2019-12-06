@@ -58,4 +58,13 @@ public class CourseServiceImpl implements CourseService {
 		return mapper.dAll(userIdList);
 	}
 
+	public List<Course> selectById2(int id) {
+
+		return mapper.selectById2(id);
+	}
+
+	public Course selectByCourseid(int id) {
+		return mapper.selectByCourseid(id);
+	}
+
 }

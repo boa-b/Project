@@ -63,4 +63,12 @@
         #{id}
     </foreach>
 	</delete>
+	
+	
+	 <select id="selectById2" resultMap="courseMap">
+       select * from course where subject_id=#{sad}
+    </select>
+    <select id="selectByCourseid" resultMap="courseMap">
+    select * from course where id=#{asd}
+    </select>
 </mapper>

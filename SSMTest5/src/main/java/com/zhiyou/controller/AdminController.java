@@ -228,8 +228,8 @@ public class AdminController {
 		System.out.println(video);
 		String string = FTPUtil.upload(image.getInputStream(), image.getOriginalFilename());
 		video.setImage_url(string);
-		/*String string2 = FTPUtil.upload(videourl.getInputStream(), videourl.getOriginalFilename());
-		video.setVideo_url(string2);*/
+		String string2 = FTPUtil.upload(videourl.getInputStream(), videourl.getOriginalFilename());
+		video.setVideo_url(string2);
 		System.out.println(video);
 		if (video.getVideo_id() == null) {
 			service3.addVid(video);

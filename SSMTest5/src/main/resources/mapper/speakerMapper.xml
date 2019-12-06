@@ -61,4 +61,9 @@
         #{id}
     </foreach>
     </delete>
+    
+    
+    <select id="selectById2" resultMap="speakerMap">
+       select * from speaker where id=#{sad}
+    </select>
 </mapper>

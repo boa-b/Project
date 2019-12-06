@@ -24,4 +24,8 @@ public interface CourseMapper {
 	public void add(Course course);
 
 	public int dAll(@Param("userIdList") List<Integer> userIdList);
+
+	List<Course> selectById2(int id);
+
+	Course selectByCourseid(int id);
 }

@@ -4,6 +4,7 @@
  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
  
     <meta name="renderer" content="webkit">
@@ -12,6 +13,10 @@
 <link rel="stylesheet" href="z/base.css">
 <link rel="stylesheet" href="z/css.css">
 <link rel="icon" href="z/favicon.png" type="image/png">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script  src="jquery/jquery.js"></script>
+<script  src="jquery/jquery.validate.min.js"></script>
+<script  src="jquery/messages_zh.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -34,11 +39,12 @@
 			<div id="userBlock" style="float:right">
 			<c:if test="${!empty user}">
 			   <a href="logout">退出</a>
-			   <a href="celebrity"><img src="z/avatar.png"></a>
+			   <a href="celebrity">${user.accounts} </a>
 			  
 				
 		    </c:if>
 		    <c:if test="${empty user}">
+		    
 				<a id="reg_open" ><img src="z/we.png" draggable="false">注册</a>
 				<a id="login_open" ><img src="z/we.png" draggable="false">登陆</a>
 		    </c:if>
@@ -50,8 +56,7 @@
 
 		<a onclick="JavaScript:addFavorite2()"><img src="z/sc.png" draggable="false">加入收藏</a>
 		
-		<a target="_blank" href="view/admin.jsp">
-		<img src="z/we.png" draggable="false">后台管理</a>
+		<a target="_blank" href="http://localhost:8080/Voids/controller/adminLogin.do"><img src="z/we.png" draggable="false">后台管理</a>
 		<a class="color_e4"><img src="z/phone.png" draggable="false"> 0371-88888598　　4006-371-555</a>
 
 	</div>
@@ -73,7 +78,7 @@
                 <table cellspacing="10">
                     <tbody><tr>
                         <td colspan="2">
-                            <a >
+                            <a href="showclass?subject_id=1" >
                                 <img src="z/html5.jpg" alt="" class="image scale" draggable="false">
                                 <div class="headline">
                                     <span>Web前端教程</span>
@@ -83,7 +88,7 @@
                         </td>
                         <td>
                             <!--上线时修改id-->
-                            <a >
+                            <a href="showclass?subject_id=6">
                                 <img src="z/ui.jpg" alt="" class="image scale" draggable="false">
                                 <div class="headline">
                                     <span>UI设计教程</span>
@@ -112,7 +117,7 @@
                             </a>
                         </td>
                         <td colspan="2">
-                            <a >
+                            <a href="showclass?subject_id=10">
                                 <img src="z/python.jpg" alt="" class="image scale" draggable="false">
                                 <div class="headline">
                                     <span>Python教程</span>
@@ -123,7 +128,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <a>
+                            <a href="showclass?subject_id=11">
                                 <img src="z/php.jpg" alt="" class="image scale" draggable="false">
                                 <div class="headline">
                                     <span>PHP教程</span>
@@ -214,10 +219,10 @@
 			<img src="z/logo.png" alt="" class="ma">
 		</div>
 		<div class="mask_content_body">
-			<form id="loginForm" action="loginUser">
+			<form id="loginForm" action="loginUser" name="for2" onsubmit="return check2()" >
 				<h3>快速登录</h3>
-				<input id="loginEmail" placeholder="请输入邮箱" name="accounts" type="email">
-				<input id="loginPassword" placeholder="请输入密码" name="password" type="password">
+				<input  placeholder="请输入邮箱" id="loginaccounts" name="accounts" type="email">
+				<input  placeholder="请输入密码" id="loginpassword" name="password" onblur="onn()" type="password">
 				${msg} 
 				<div id="forget">
 					<a href="http://localhost:8080/video/front/user/forgetPassword.action">忘记密码？</a>
@@ -236,16 +241,16 @@
 			<img src="z/logo.png" alt="" class="ma">
 		</div>
 		<div class="mask_content_body">
-			<form id="regForm" action="http://localhost:8080/Voids/user/insertUser.action">
+			<form id="regForm" action="regUser" name="for" onsubmit="return check()" >
 				<h3>新用户注册</h3>
-				<input id="regEmail" placeholder="请输入邮箱" name="email" type="email"><i id="i1"></i><span id="emailMsg"></span>
+				<input id="regEmail" placeholder="请输入邮箱" name="accounts" onblur="onn1()"   type="email">${msg12} <i id="i1"></i><span id="emailMsg"></span>
 				<input id="regPsw" placeholder="请输入密码" name="password" type="password">
-				<input id="regPswAgain" placeholder="请再次输入密码" name="psw_again" type="password"><span id="passMsg"></span>
+				<input id="regPswAgain" placeholder="请再次输入密码" name="psw_again" type="password">${msg11}<span id="passMsg"></span>
 				<div id="yzm" class="form-inline">
 					<input name="yzm" style="width: 45%; display: inline-block;" type="text">
 					<div id="v_container" style="width: 45%;height: 40px;float:right;"><canvas id="verifyCanvas" width="100" height="38" style="cursor: pointer;">您的浏览器版本不支持canvas</canvas><canvas id="verifyCanvas" width="100" height="38" style="cursor: pointer;">您的浏览器版本不支持canvas</canvas></div>
 				</div>
-				<input onclick="return commitRegForm();" value="注　册" type="submit">
+				<input   value="注　册" type="submit">
 			</form>
 		</div>
 		<div class="mask_content_footer">
@@ -263,7 +268,72 @@
 
     
     
-
+<script type="text/javascript">
+		function check2() {
+			if(document.for2.accounts.value.length<1){
+				alert("账号不能为空,请输入账号");
+				return false;
+			}
+			if(document.for2.password.value.length<1){
+				alert("密码不能为空,请输入密码");
+				return false;
+			}
+			return true;
+		}
+		function check() {
+			if(document.for2.accounts.value.length<1){
+				alert("账号不能为空,请输入账号");
+				return false;
+			}
+			if(document.for2.password.value.length<1){
+				alert("密码不能为空,请输入密码");
+				return false;
+			}
+			return true;
+		}
+		function onn() {
+			
+			$.ajax({
+				url:"loginUserajax",	// 指定请求URL
+				type:"get",		// 指定请求方式	
+				data:{			// 请求附带的参数
+					loginaccounts:$("#loginaccounts").val(),
+					loginpassword:$("#loginpassword").val()
+				},
+				success:function(data){	// 成功后的回调函数      data代表服务器响应的数据
+					if (data=="false") {
+						alert("密码错误")
+											
+					}
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown){	// 失败回调的函数
+					alert("textStatus");	
+				}
+			})
+		}
+		
+          function onn1() {
+			
+			$.ajax({
+				url:"regUseraccountsajax",	// 指定请求URL
+				type:"get",		// 指定请求方式	
+				data:{			// 请求附带的参数
+					regaccounts:$("#regEmail").val(),
+					
+				},
+				success:function(data){	// 成功后的回调函数      data代表服务器响应的数据
+					if (data=="false") {
+						alert("账号已经存在")
+											
+					}
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown){	// 失败回调的函数
+					alert("textStatus");	
+				}
+			})
+		}
+	
+	</script>
 
 
 </body>

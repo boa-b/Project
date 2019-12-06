@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace: 代表这个文件的命名空间,根据这个名称可以定位到这个文件 -->
+<mapper namespace="com.zhiyou.mapper.SubjectMapper">
+	<resultMap type="subject" id="subjectMap">
+		<id column="subject_id" property="subject_id"/>
+		<result column="subject_name" property="subject_name"/>
+		
+	</resultMap>
+    <select id="selectById" resultMap="subjectMap">
+       select * from subject where subject_id=#{sad}
+    </select>
+
+</mapper>

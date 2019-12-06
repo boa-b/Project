@@ -109,7 +109,15 @@
 		DELETE FROM  video  WHERE video_id IN
     <foreach collection="userIdList" item="id" open="(" separator="," close=")">
         #{id}
-    </foreach>
-		
+    </foreach>		
 	</delete>
+	
+    <select id="selectByCourseid" resultMap="videoMap">
+       select * from video where course_id=#{sad}
+    </select>
+    <select id="selectById2" resultMap="videoMap">
+       select * from video where video_id=#{sad}
+    </select>
+	
+	
 </mapper>

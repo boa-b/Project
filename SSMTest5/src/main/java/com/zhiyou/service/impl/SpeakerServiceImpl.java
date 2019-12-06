@@ -57,4 +57,10 @@ public class SpeakerServiceImpl implements SpeakerService {
 		return mapper.dAll(userIdList);
 	}
 
+	public Speaker selectById2(int id) {
+		// TODO Auto-generated method stub
+		return mapper.selectById2(id);
+
+	}
+
 }

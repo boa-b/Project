@@ -25,4 +25,8 @@ public interface VideoMapper {
 			@Param("subject_id") Integer subject_id);
 
 	public int dAll(@Param("userIdList") List<Integer> userIdList);
+
+	List<Video> selectByCourseid(int id);
+
+	Video selectById2(int id);
 }

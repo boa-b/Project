@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,21 +33,16 @@
 	<menu>
 		<div class="container clearfix">
 			<ul class="clearfix f_left">
-				<li>首页</a></li>
+				<li style="color:white"><a href="returnindex">首页</a></li>
 				
-				<li class="menu_active">个人中心</a></li>
+				<li class="menu_active" style="color:white"><a href="celebrity">个人中心</a></li>
 			</ul>
 			
 			<div id="user_bar">
-				<a >
-						
+				<a href="celebrity">			
 						<img id="avatar" src="z/avatar_lg.png" alt="" width="30px;">
-						
-						
-					
-
 				</a>
-				<a  id="lay_out">退出</a>
+				<a  id="lay_out" href="logout">退出</a>
 			</div>
 		</div>
 	</menu>
@@ -54,45 +50,19 @@
 
     <main>
         <div class="container">
-            <h2>我的资料</h2>
+            <h2><a href="celebrity">我的资料</a></h2>
             <div id="profile_tab">
                 <ul class="profile_tab_header f_left clearfix">
-                    <li>更改资料</a></li>
+                    <li><a href="updateinfo" target="myframe">更改资料</a></li>
                     <li class="profile_tab_line">|</li>
-                    <li>更改头像</a></li>
+                    <li><a href="updatehead" target="myframe"">更改头像</a></li>
                     <li class="profile_tab_line">|</li>
-                    <li>密码安全</a></li>
+                    <li><a href="updatepwd" target="myframe">密码安全</a></li>
                 </ul>
-                <div class="proflle_tab_body">
+                <div class="proflle_tab_body" >
+                    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" src="userinfo" width="1000px" height="300px" id="if" name="myframe">
+                    </iframe>
                     
-                    <div class="proflle_tab_workplace clearfix">
-                        <div class="profile_avatar_area">
-                            
-		                         <img id="avatar" width="200px;" src="http://localhost:8080/Voids/" alt="">
-		                      
-                  
-                            <p>
-                            
-						    
-                                                                          欢迎回来！</p>
-                        </div>
-                        <ul class="profile_ifo_area">
-                            <li><span class="dd">昵　称：</span></li>
-                            
-                            
-                            
-                            
-                            
-                            <li><span class="dd">性　别：</span>
-                                
-                                 
-                             </li>
-                            <li><span class="dd">生　日：</span></li>
-                            <li><span class="dd">邮　箱：</span>1@qq.com</li>
-                            <li><span class="dd">所在地：</span> </li>
-                            
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
@@ -106,6 +76,6 @@
             </ul>
         </div>
     </footer>
-
+ 
 </body>
 </html>

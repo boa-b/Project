@@ -29,4 +29,6 @@ public interface SpeakerService {
 
 	// 批量删除
 	public int dAll(List<Integer> userIdList, HttpServletResponse response);
+
+	Speaker selectById2(int id);
 }

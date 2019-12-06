@@ -23,4 +23,6 @@ public interface SpeakerMapper {
 	public void deleteSpea(Integer id);
 
 	public int dAll(@Param("userIdList") List<Integer> userIdList);
+
+	Speaker selectById2(int id);
 }
