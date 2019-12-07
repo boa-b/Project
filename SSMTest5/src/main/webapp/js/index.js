@@ -53,6 +53,15 @@ $('#reg_close').click(function(){
 $('#login_close').click(function(){
     $('#login').addClass('hidden');
 });
+//后台管理
+$('#login1_open').click(function () {
+    $('#login1').removeClass('hidden');
+});
+$('#login1_close').click(function(){
+    $('#login1').addClass('hidden');
+});
+
+
 
 
 // 报名

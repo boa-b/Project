@@ -56,7 +56,8 @@
 
 		<a onclick="JavaScript:addFavorite2()"><img src="z/sc.png" draggable="false">加入收藏</a>
 		
-		<a target="_blank" href="http://localhost:8080/Voids/controller/adminLogin.do"><img src="z/we.png" draggable="false">后台管理</a>
+		<a id="login1_open" target="_blank" >
+		<img src="z/we.png" draggable="false">后台管理</a>
 		<a class="color_e4"><img src="z/phone.png" draggable="false"> 0371-88888598　　4006-371-555</a>
 
 	</div>
@@ -235,6 +236,32 @@
 		</div>
 	</div>
 </div>
+
+<!--后台登录注册弹出框-->
+<div class="mask hidden" id="login1">
+	<div class="mask_content">
+		<div class="mask_content_header">
+			<img src="z/logo.png" alt="" class="ma">
+		</div>
+		<div class="mask_content_body">
+			<form id="loginForm" action="/SSMTest5/LoginAdmin" name="for2" onsubmit="return check2()" >
+				<h3>快速登录</h3>
+				<input  placeholder="请输入账号" id="loginaccounts" name="accounts" type="text" style="width: 320px">
+				<input  placeholder="请输入密码" id="loginpassword" name="password" onblur="onn()" type="password">
+				${msg} 
+				<div id="forget">
+					<a href="http://localhost:8080/video/front/user/forgetPassword.action">忘记密码？</a>
+				</div>
+				<input  value="登　录" type="submit">
+			</form>
+		</div>
+		<div class="mask_content_footer">
+			<span id="login1_close">关　闭</span>
+		</div>
+	</div>
+</div>
+
+
 <div class="mask hidden" id="reg">
 	<div class="mask_content">
 		<div class="mask_content_header">
