@@ -42,7 +42,7 @@ public class AdminController {
 		if (admin != null) {
 			request.getRequestDispatcher("view/course.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("view/admin.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}
 

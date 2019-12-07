@@ -244,7 +244,7 @@
 			<img src="z/logo.png" alt="" class="ma">
 		</div>
 		<div class="mask_content_body">
-			<form id="loginForm" action="/SSMTest5/LoginAdmin" name="for2" onsubmit="return check2()" >
+			<form id="loginForm" action="LoginAdmin" name="for2" onsubmit="return check2()" >
 				<h3>快速登录</h3>
 				<input  placeholder="请输入账号" id="loginaccounts" name="accounts" type="text" style="width: 320px">
 				<input  placeholder="请输入密码" id="loginpassword" name="password" onblur="onn()" type="password">
